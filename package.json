@@ -2,7 +2,6 @@
   "name": "Observe",
   "version": "0.0.1",
   "description": "Observe All",
-  "main": "app.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/aza/observe.git"
