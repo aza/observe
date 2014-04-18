@@ -19,10 +19,12 @@ passport.use('provider', new OAuth2Strategy({
   }
 ));
 
+var auth = passport.authenticate('provider', { successRedirect: '/', failureRedirect: '/login' }
+
 // Redirect the user to the OAuth 2.0 provider for authentication.  When
 // complete, the provider will redirect the user back to the application at
 //     /auth/provider/callback
-app.get('/auth/provider', passport.authenticate('provider', {
+app.get('/login', passport.authenticate('provider', {
   scope: ['basic_read', 'extended_read', 'location_read', 'mood_read', 'move_read', 'sleep_read', 'meal_read', 'generic_event_read', 'generic_event_write']
 }));
 
@@ -30,18 +32,17 @@ app.get('/auth/provider', passport.authenticate('provider', {
 // Finish the authentication process by attempting to obtain an access
 // token.  If authorization was granted, the user will be logged in.
 // Otherwise, authentication has failed.
-app.get('/auth/provider/callback', 
-  passport.authenticate('provider', { successRedirect: '/',
-                                      failureRedirect: '/login' })
-);
+app.get('/auth/provider/callback', auth);
+
+
 
 app.get('/', function(req, res){
   console.log( req.user )
-  res.send('Hi! <a href="auth/provider">Login</a>' + req.user)
+  res.send('Hi! <a href="auth/provider">Login</a>')
 })
 
-app.get('/hi', function(req, res){
-  res.send('Hi! <a href="auth/provider">Login</a>')
+app.get('/hi', auth, function(req, res){
+  res.send('Hi! <a href="auth/provider">Login</a>'+ req.user)
 })
 
 var port = Number(process.env.PORT || 5000);
