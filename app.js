@@ -14,7 +14,7 @@ passport.use('provider', new OAuth2Strategy({
     callbackURL: 'https://shielded-woodland-3199.herokuapp.com/auth/provider/callback'
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('authed!', accessToken)
+    console.log('authed!', accessToken, profile, done)
   }
 ));
 
