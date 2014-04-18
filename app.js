@@ -5,10 +5,7 @@ var passport = require('passport')
 
 var app = express();
 
-app.use(express.static('public'));
 app.use(passport.initialize());
-//app.use(passport.session());
-
 
 
 passport.use('provider', new OAuth2Strategy({
