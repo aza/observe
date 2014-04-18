@@ -14,7 +14,8 @@ passport.use('provider', new OAuth2Strategy({
     callbackURL: 'https://shielded-woodland-3199.herokuapp.com/auth/provider/callback'
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('authed!', accessToken, profile, done)
+    console.log('authed!', accessToken )
+    return done(null, {accessToken: accessToken, refreshToken: refreshToken})
   }
 ));
 
@@ -31,15 +32,12 @@ app.get('/auth/provider', passport.authenticate('provider', {
 // Otherwise, authentication has failed.
 app.get('/auth/provider/callback', 
   passport.authenticate('provider', { successRedirect: '/',
-                                      failureRedirect: '/login' }),
-  function(req, res){
-    res.json( req.user )
-
-  }
+                                      failureRedirect: '/login' })
 );
 
 app.get('/', function(req, res){
-  res.send('Hi! <a href="auth/provider">Login</a>')
+  console.log( req.user )
+  res.send('Hi! <a href="auth/provider">Login</a>' + req.user)
 })
 
 app.get('/hi', function(req, res){
