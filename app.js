@@ -19,7 +19,7 @@ passport.use('provider', new OAuth2Strategy({
   }
 ));
 
-var auth = passport.authenticate('provider', { successRedirect: '/', failureRedirect: '/login' }
+var auth = passport.authenticate('provider', { successRedirect: '/', failureRedirect: '/login' })
 
 // Redirect the user to the OAuth 2.0 provider for authentication.  When
 // complete, the provider will redirect the user back to the application at
