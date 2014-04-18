@@ -11,7 +11,7 @@ passport.use('provider', new OAuth2Strategy({
     tokenURL: 'https://jawbone.com/auth/oauth2/token',
     clientID: 'jHFl1awD4ak',
     clientSecret: '079e14b4939bbc00b7a6108486b5d2dc2db6aace',
-    callbackURL: 'https://127.0.0.1:3000/auth/provider/callback'
+    callbackURL: 'https://shielded-woodland-3199.herokuapp.com/auth/provider/callback'
   },
   function(accessToken, refreshToken, profile, done) {
     console.log('authed!', accessToken)
