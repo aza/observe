@@ -5,15 +5,10 @@ var passport = require('passport')
 
 var app = express();
 
-app.configure(function() {
-  app.use(express.static('public'));
-  app.use(express.cookieParser());
-  app.use(express.bodyParser());
-  app.use(express.session({ secret: 'keyboard cat' }));
-  app.use(passport.initialize());
-  app.use(passport.session());
-  app.use(app.router);
-});
+app.use(express.static('public'));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 passport.use('provider', new OAuth2Strategy({
