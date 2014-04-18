@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
+	<script src='http://code.jquery.com/jquery-2.1.0.min.js'></script>
+</head>
+<body>
+<h1>HELLO</h1>
+
+<div class='users'></div>
+
+<script>
+var usersRef = new Firebase('https://observe.firebaseio.com/users');
+usersRef.on('child_added', function(data){
+	console.log( data.val() )
+	$('<div>').text( data.val().me.first ).appendTo('.users')
+})
+
+</script>
+
+</body>
+</html>
