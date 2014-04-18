@@ -26,6 +26,14 @@ passport.use('provider', new OAuth2Strategy({
   }
 ));
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
 var auth = passport.authenticate('provider', {
   successRedirect: '/',
   failureRedirect: '/login',
