@@ -56,7 +56,7 @@ app.get('/', function(req, res){
   res.send('Hi! <a href="/login">Login</a>')
 })
 
-app.get('/hi', auth, function(req, res){
+app.get('/hi', function(req, res){
   console.log( req.user )
   res.send('Hi! <a href="/login">Login</a>'+ req.user)
 })
