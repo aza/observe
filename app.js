@@ -23,7 +23,7 @@ passport.use('provider', new OAuth2Strategy({
   },
   function(accessToken, refreshToken, profile, done) {
     console.log('authed!', accessToken, "profile", profile )
-    var user = new api(accessToken)
+    var user = new api.UP(accessToken)
     user.get('users/@me', function(data){
       console.log( data )
     })
