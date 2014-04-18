@@ -9,10 +9,10 @@ var passport = require('passport')
 
 var app = express();
 
-app.use(passport.initialize());
+app.use(passport.initialize())
 app.use(cookieParser())
-app.use(session({secret:'noobletrabbit', key:'sid', cookie: { secure: true }}));
-
+app.use(session({secret:'noobletrabbit', key:'sid', cookie: { secure: true }}))
+app.use(express.static(__dirname + '/static'))
 
 
 passport.use('provider', new OAuth2Strategy({
@@ -29,6 +29,7 @@ passport.use('provider', new OAuth2Strategy({
       console.log( json )
       var userRef = new Firebase('https://observe.firebaseio.com/users');
       userRef.child( json.data.xid ).child('me').set( json.data )
+      userRef.child( json.data.xid ).update({token: accessToken})
     })
     done(null, {accessToken: accessToken, refreshToken: refreshToken})
   }
@@ -61,12 +62,12 @@ app.get('/auth/provider/callback', auth);
 
 
 app.get('/', function(req, res){
-  res.send('Hi! Please <a href="/login">Login</a>')
+  res.send('<a href="/login">Sign up</a> for nutrition coaching!')
 })
 
 app.get('/success', function(req, res){
   console.log( req )
-  res.send('Logged In!')
+  res.send('You have been succesfully signed up!')
 })
 
 var port = Number(process.env.PORT || 5000);
