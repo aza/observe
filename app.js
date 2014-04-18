@@ -35,6 +35,7 @@ app.get('/', function(req, res){
   res.send('Hi! <a href="auth/provider">Login</a>')
 })
 
-var server = app.listen(5000, function() {
+var port = Number(process.env.PORT || 5000);
+var server = app.listen(port, function() {
     console.log('Listening on port %d', server.address().port);
 });
