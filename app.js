@@ -35,7 +35,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 var auth = passport.authenticate('provider', {
-  successRedirect: '/',
+  successRedirect: '/success',
   failureRedirect: '/login',
   scope: ['basic_read', 'extended_read', 'location_read', 'mood_read', 'move_read', 'sleep_read', 'meal_read', 'generic_event_read', 'generic_event_write']  
 })
@@ -53,12 +53,11 @@ app.get('/auth/provider/callback', auth);
 
 
 app.get('/', function(req, res){
-  res.send('Hi! <a href="/login">Login</a>')
+  res.send('Hi! Please <a href="/login">Login</a>')
 })
 
-app.get('/hi', function(req, res){
-  console.log( req.user )
-  res.send('Hi! <a href="/login">Login</a>'+ req.user)
+app.get('/success', function(req, res){
+  res.send('Logged In!')
 })
 
 var port = Number(process.env.PORT || 5000);
