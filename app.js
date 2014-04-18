@@ -5,7 +5,7 @@ var passport = require('passport')
 
 var app = express();
 
-/*
+
 passport.use('provider', new OAuth2Strategy({
     authorizationURL: 'https://jawbone.com/auth/oauth2/auth',
     tokenURL: 'https://jawbone.com/auth/oauth2/token',
@@ -30,7 +30,7 @@ app.get('/auth/provider', passport.authenticate('provider'));
 app.get('/auth/provider/callback', 
   passport.authenticate('provider', { successRedirect: '/',
                                       failureRedirect: '/login' }));
-*/
+
 app.get('/', function(req, res){
   res.send('Hi! <a href="auth/provider">Login</a>')
 })
