@@ -4,6 +4,7 @@ var passport = require('passport')
   , cookieParser = require('cookie-parser')
   , session = require('express-session')
   , api = require('./api')
+  , Firebase = require('firebase')
 
 
 var app = express();
@@ -24,8 +25,10 @@ passport.use('provider', new OAuth2Strategy({
   function(accessToken, refreshToken, profile, done) {
     console.log('authed!', accessToken, "profile", profile )
     var user = new api.UP(accessToken)
-    user.get('users/@me', function(data){
-      console.log( data, req )
+    user.get('users/@me', function(json){
+      console.log( json )
+      var userRef = new Firebase('https://observe.firebaseio.com/users');
+      userRef.child( json.data.xid ).child('me').set( json.data )
     })
     done(null, {accessToken: accessToken, refreshToken: refreshToken})
   }
@@ -62,6 +65,7 @@ app.get('/', function(req, res){
 })
 
 app.get('/success', function(req, res){
+  console.log( req )
   res.send('Logged In!')
 })
 
