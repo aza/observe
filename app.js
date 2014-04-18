@@ -35,13 +35,12 @@ app.get('/login', passport.authenticate('provider', {
 app.get('/auth/provider/callback', auth);
 
 
-
 app.get('/', function(req, res){
-  console.log( req.user )
   res.send('Hi! <a href="auth/provider">Login</a>')
 })
 
 app.get('/hi', auth, function(req, res){
+  console.log( req.user )
   res.send('Hi! <a href="auth/provider">Login</a>'+ req.user)
 })
 
