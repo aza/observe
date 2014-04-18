@@ -1,11 +1,14 @@
 var passport = require('passport')
   , OAuth2Strategy = require('passport-oauth').OAuth2Strategy
   , express = require('express')
+  , session = require('express-session')
 
 
 var app = express();
 
 app.use(passport.initialize());
+app.use(session());
+
 
 
 passport.use('provider', new OAuth2Strategy({
