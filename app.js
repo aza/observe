@@ -5,6 +5,16 @@ var passport = require('passport')
 
 var app = express();
 
+app.configure(function() {
+  app.use(express.static('public'));
+  app.use(express.cookieParser());
+  app.use(express.bodyParser());
+  app.use(express.session({ secret: 'keyboard cat' }));
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(app.router);
+});
+
 
 passport.use('provider', new OAuth2Strategy({
     authorizationURL: 'https://jawbone.com/auth/oauth2/auth',
