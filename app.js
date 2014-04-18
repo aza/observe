@@ -1,13 +1,15 @@
 var passport = require('passport')
   , OAuth2Strategy = require('passport-oauth').OAuth2Strategy
   , express = require('express')
+  , cookieParser = require('cookie-parser')
   , session = require('express-session')
 
 
 var app = express();
 
 app.use(passport.initialize());
-app.use(session());
+app.use(cookieParser())
+app.use(session({secret:'noobletrabbit', key:'sid', cookie: { secure: true }}));
 
 
 
