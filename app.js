@@ -31,7 +31,12 @@ app.get('/auth/provider', passport.authenticate('provider', {
 // Otherwise, authentication has failed.
 app.get('/auth/provider/callback', 
   passport.authenticate('provider', { successRedirect: '/',
-                                      failureRedirect: '/login' }));
+                                      failureRedirect: '/login' }),
+  function(req, res){
+    res.json( req.user )
+
+  }
+);
 
 app.get('/', function(req, res){
   res.send('Hi! <a href="auth/provider">Login</a>')
