@@ -3,6 +3,7 @@ var passport = require('passport')
   , express = require('express')
   , cookieParser = require('cookie-parser')
   , session = require('express-session')
+  , jawboneUp = require('jawbone-up')
 
 
 var app = express();
@@ -22,6 +23,10 @@ passport.use('provider', new OAuth2Strategy({
   },
   function(accessToken, refreshToken, profile, done) {
     console.log('authed!', accessToken, "profile", profile )
+    var api = jawboneUp({access_token: accessToken})
+    api.me.get({}, function(x){
+      console.log( "THIS", x)
+    })
     done(null, {accessToken: accessToken, refreshToken: refreshToken})
   }
 ));
