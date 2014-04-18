@@ -1,0 +1,15 @@
+{
+  "name": "Observe",
+  "version": "0.0.1",
+  "description": "Observe All",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aza/observe.git"
+  }
+  "dependencies": {
+    "passport": "^0.2.0",
+    "passport-oauth": "^1.0.0",
+    "express": "^4.0.0"
+  }
+}
