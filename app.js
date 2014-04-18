@@ -21,7 +21,9 @@ passport.use('provider', new OAuth2Strategy({
 // Redirect the user to the OAuth 2.0 provider for authentication.  When
 // complete, the provider will redirect the user back to the application at
 //     /auth/provider/callback
-app.get('/auth/provider', passport.authenticate('provider'));
+app.get('/auth/provider', passport.authenticate('provider', {
+  scope: ['basic_read', 'extended_read', 'location_read', 'mood_read', 'move_read', 'sleep_read', 'meal_read', 'generic_event_read', 'generic_event_write']
+}));
 
 // The OAuth 2.0 provider has redirected the user back to the application.
 // Finish the authentication process by attempting to obtain an access
