@@ -70,6 +70,9 @@ app.get('/success', function(req, res){
 })
 
 app.get('/api', function(req, res){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
   var path = req.param('path'),
       token = req.param('token')
 
