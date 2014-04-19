@@ -66,8 +66,18 @@ app.get('/', function(req, res){
 })
 
 app.get('/success', function(req, res){
-  console.log( req )
   res.send('You have been succesfully signed up!')
+})
+
+app.get('/api', function(req, res){
+  var path = req.param('path'),
+      token = req.param('token')
+
+  var user = new api.UP(token)
+  user.get(path, function(json){
+    console.log( json )
+    res.json( json )
+  })
 })
 
 var port = Number(process.env.PORT || 5000);

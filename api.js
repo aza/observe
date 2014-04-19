@@ -17,7 +17,12 @@ function UP(accessToken){
           "Authorization": "Bearer " + accessToken
         }
       }, function(e,r, body){
-        callback( JSON.parse(body) )
+        try{
+          callback( JSON.parse(body) )
+        } catch(e){
+          console.log( e )
+          callback( null )
+        }
     })    
   }
 }
