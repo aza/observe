@@ -69,7 +69,7 @@ app.get('/success', function(req, res){
   res.send('You have been succesfully signed up!')
 })
 
-app.get('/api', function(req, res){
+app.get('/api/get', function(req, res){
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
@@ -78,7 +78,19 @@ app.get('/api', function(req, res){
 
   var user = new api.UP(token)
   user.get(path, function(json){
-    console.log( json )
+    res.json( json )
+  })
+})
+
+app.get('/api/request', function(req, res){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
+  var options = req.param('options'),
+      token = options.token
+
+  var user = new api.UP(token)
+  user.request(options, function(json){
     res.json( json )
   })
 })

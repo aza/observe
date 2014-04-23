@@ -4,6 +4,8 @@
 	<title></title>
 	<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
 	<script src='http://code.jquery.com/jquery-2.1.0.min.js'></script>
+	<script src='js/underscore.min.js'></script>
+	<script src='js/moments.min.js'></script>
 	<script src='js/user.js'></script>
 </head>
 <body>
@@ -12,10 +14,22 @@
 <div class='users'></div>
 
 <script>
-var usersRef = new Firebase('https://observe.firebaseio.com/users');
+var usersRef = new Firebase('https://observe.firebaseio.com/users')
 usersRef.on('child_added', function(data){
-	console.log( data.val() )
+	//console.log( data.val() )
 	$('<div>').text( data.val().me.first ).appendTo('.users')
+	var token = data.val().token,
+	    user = new User(token)
+	
+	//user.meals()
+	window.aza = user
+
+	user.getMealsForDay('20140423'
+		, function(x){console.log("Meals:", x)
+	})
+
+	aza.getMealsForWeek("20140416", function(x){console.log("Week of meals", x)})
+
 })
 
 </script>
