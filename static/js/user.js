@@ -1,7 +1,7 @@
 function User(token){
   var self = this
-      , baseUrl = 'http://127.0.0.1:5000/api'
-      //, baseUrl = 'https://shielded-woodland-3199.herokuapp.com/api'
+      //, baseUrl = 'http://127.0.0.1:5000/api'
+      , baseUrl = 'https://shielded-woodland-3199.herokuapp.com/api'
       , dateFormat = 'YYYYMMDD'
 
 
